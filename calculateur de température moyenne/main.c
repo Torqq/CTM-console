@@ -1,11 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
+#include "calcul.h"
 
 // Test t1 = 17, t2 = 19, t3 = 21, h1 = 12.5, h2 = 3, h3 = 8.5;
 int main()
 {
+    printf("-|- Biadan V. 0.3.0\n"); // Développement des jours de la semaine pour un enregistrement plus précis et plus adaptés par rapports aux personnes tiers.
+    printf("CALCULATEUR DE TEMPERATURE MOYENNE\n\n\n");
+    printf("Topo : Une plage d'horraire correspond au nombres d'heures concernee a une temperature.\nExemple : 3 heure de chauffe a 17 degree. La plage horraire sera de 3.\n");
+    printf("\nATTENTION ! Bien mettre la plage horraire liee a la temperature dans le bon ordre. horraire 1 pour temperature 1.\n");
+    printf("ATTENTION ! Bien mettre les plages horraire en valeur numerique.\n            Exemple : 8h30 -> 8.5.\n");
+
+    calc();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+/*
+----------------------------------------------------------------------------- VERSION 0.3.0
+int main()
+{
     printf("-|- Biadan V. 0.3\n"); // Développement des jours de la semaine pour un enregistrement plus précis et plus adaptés par rapports aux personnes tiers.
+    printf("CALCULATEUR DE TEMPERATURE MOYENNE\n\n\n");
+    printf("Topo : Une plage d'horraire correspond au nombres d'heures concernee a une temperature.\nExemple : 3 heure de chauffe a 17 degree. La plage horraire sera de 3.\n");
+    printf("\nATTENTION ! Bien mettre la plage horraire liee a la temperature dans le bon ordre. horraire 1 pour temperature 1.\n");
+    printf("ATTENTION ! Bien mettre les plages horraire en valeur numerique.\n            Exemple : 8h30 -> 8.5.\n");
+
+    calc();
+
+    return 0;
+}
+
+----------------------------------------------------------------------------- VERSION 0.2
+
+int main()
+{
+    printf("-|- Biadan V. 0.2\n");
     printf("CALCULATEUR DE TEMPERATURE MOYENNE\n\n\n");
     printf("Topo : Une plage d'horraire correspond au nombres d'heures concernee a une temperature.\nExemple : 3 heure de chauffe a 17 degree. La plage horraire sera de 3.\n");
     printf("\nATTENTION ! Bien mettre la plage horraire liee a la temperature dans le bon ordre. horraire 1 pour temperature 1.\n");
@@ -23,7 +63,7 @@ int main()
 
     if (tailleT > 0) {
         valeurT = malloc(tailleT * sizeof(int));
-        if (valeurT == NULL) { 
+        if (valeurT == NULL) {
             exit(0);
         }
 
@@ -67,3 +107,43 @@ int main()
 
     return 0;
 }
+
+
+----------------------------------------------------------------------------- VERSION 0.1
+
+Version du programme totalement manuelle.
+
+int main()
+{
+    printf("-|- Biadan V. 0.1\n");
+    printf("CALCULATEUR DE TEMPERATURE MOYENNE\n\n\n");
+    printf("Topo : Une plage d'horraire correspond au nombres d'heures concernee a une temperature.\nExemple : 3 heure de chauffe a 17 degree. La plage horraire sera de 3.\n");
+    printf("\nATTENTION ! Bien mettre la plage horraire liee a la temperature dans le bon ordre. horraire 1 pour temperature 1.\n");
+    printf("ATTENTION ! Bien mettre les plages horraire en valeur numerique.\n            Exemple : 8h30 -> 8.5.\n\n");
+
+    double h1 = 0, h2 = 0, h3 = 0;
+    int t1 = 0, t2 = 0, t3 = 0;
+    double moy = 0;
+
+    printf("\nQuel est la temperature enregistree 1 : ");
+    scanf_s("%d", &t1);
+    printf("\nQuel est la plage horraire 1 liee a la temperature : ");
+    scanf_s("%lf", &h1);
+
+    printf("\nQuel est la temperature enregistree 2 : ");
+    scanf_s("%d", &t2);
+    printf("\nQuel est la plage horraire 2 liee a la temperature : ");
+    scanf_s("%lf", &h2);
+
+    printf("\nQuel est la temperature enregistree 3 : ");
+    scanf_s("%d", &t3);
+    printf("\nQuel est la plage horraire 3 liee a la temperature : ");
+    scanf_s("%lf", &h3);
+
+    moy = ((h1 * t1) + (h2 * t2) + (h3 * t3)) / 24;
+
+    printf("\n\n\nLA MOYENNE DE TEMPERATURE EST DE %.2lf sur 24 heures de la journee.\n\n", moy);
+
+    return 0;
+}
+*/
