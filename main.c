@@ -3,12 +3,12 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include "main.h"
-#include "weekcalc.h"
+#include "core.h"
 
-/*-----TO DO :
+/*-----TO DO : Core finality ! V.0.5 !
+* Demande de sauvegarde des données en fichier.txt.
+* Faire des boucles pour ne pas que l'utilisateur rentre des données superflux.
 * 
-* 
-*
 */
 
 int main()
@@ -17,7 +17,7 @@ int main()
 
 	do {
 		unsigned int blk = 2;
-	    printf("-|- Biadan V. 0.3.0\n"); // Développement des jours de la semaine pour un enregistrement plus précis et plus adaptés par rapports aux personnes tiers.
+	    printf("-|- Biadan V. 0.4.2\n"); // Développement des jours de la semaine pour un enregistrement plus précis et plus adaptés par rapports aux personnes tiers.
         printf("CALCULATEUR DE TEMPERATURE MOYENNE\n\n\n");
 
 		weekCalc();
