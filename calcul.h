@@ -2,7 +2,7 @@
 #define CORE_H
 
 double calc();
-int nombreData();
-double calculation(int tailleTab);
+static int nombreData();
+static double calculation(int tailleTab, double valeurT[], double valeurH[]);
 
 #endif

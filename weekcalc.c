@@ -1,40 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "weekcalc.h"
 #include "calcul.h"
 
 int weekCalc()
 {
-	int i = 0;
-	int nb_prog = numberOfProg();
-	int* tab_prog = NULL;
-	tab_prog = malloc(nb_prog * sizeof(int));
-	if (tab_prog == NULL) {
-		exit(0);
-	}
-	int* tab_jour = NULL;
-	tab_jour = malloc(nb_prog * sizeof(int));
-	if (tab_jour == NULL) {
-		exit(0);
-	}
+		int i = 0;
+		int nb_prog = numberOfProg();
+		
+		//malloc of needed tabs
+		int* tab_prog = NULL;
+		tab_prog = malloc(nb_prog * sizeof(int));
+		if (tab_prog == NULL) {
+			exit(0);
+		}
+		int* tab_jour = NULL;
+		tab_jour = malloc(nb_prog * sizeof(int));
+		if (tab_jour == NULL) {
+			exit(0);
+		}
+		double* reliq_jour_prog = NULL;
+		reliq_jour_prog = malloc(nb_prog * sizeof(double));
+		if (reliq_jour_prog == NULL) {
+			exit(0);
+		}
 
-	initTabs(tab_prog, tab_jour, nb_prog);
-	prog_implemant(tab_prog, nb_prog);
-	numberOfDaysByProg(nb_prog, tab_prog, tab_jour);
+		//prog algo
+		if (nb_prog == 1) {
+			double moyenne_jour = 0;
+			moyenne_jour = calc();
+			printf("\n\n\nLA MOYENNE DE TEMPERATURE EST DE %.2lf sur 24 heures de la journee.\n\n", moyenne_jour);
+		}
+
+		else {
+			double moyenne_semaine = 0;
+			initTabs(tab_prog, tab_jour, reliq_jour_prog, nb_prog);
+			prog_implemant(tab_prog, nb_prog);
+			numberOfDaysByProg(nb_prog, tab_prog, tab_jour);
+			moyenne_semaine = moyWeek(nb_prog, tab_jour, tab_prog, reliq_jour_prog);
+			printf("\n\n\nLA MOYENNE DE TEMPERATURE : %.2lf pour 24 heures de la journee pour la semaine.\n\n", moyenne_semaine);
+		}
+
+		free(tab_prog);
+		free(tab_jour);
+		free(reliq_jour_prog);
 
 	return 1;
 }
 
-void initTabs(int tab_prog[], int tab_jour[], int nb_prog)
+static void initTabs(int tab_prog[], int tab_jour[], double reliq_jour_prog[], int nb_prog)
 {
 	int i = 0;
 	for (i = 0; i < nb_prog; i++) {
 		tab_prog[i] = 0;
 		tab_jour[i] = 0;
+		reliq_jour_prog[i] = 0;
 	}
 }
 
-int numberOfProg()
+static int numberOfProg()
 {
 	//Demande à l'utilisateur combien y'a t'il de programmes différents dans la semaines.
 	int prog = 0;
@@ -50,7 +75,7 @@ int numberOfProg()
 	return prog;
 }
 
-void prog_implemant(int tab_prog[], int nb_prog)
+static void prog_implemant(int tab_prog[], int nb_prog)
 {
 	int i = 0, num = 0;
 	for (i = 0; i < nb_prog; i++) {
@@ -59,7 +84,7 @@ void prog_implemant(int tab_prog[], int nb_prog)
 	}
 }
 
-void numberOfDaysByProg(int nb_prog, int tab_prog[], int tab_jour[])
+static void numberOfDaysByProg(int nb_prog, int tab_prog[], int tab_jour[])
 {
 	//Demande a l'utilisateur le nombre de jours qu'il y a par programme.
 	int i = 0;
@@ -71,4 +96,24 @@ void numberOfDaysByProg(int nb_prog, int tab_prog[], int tab_jour[])
 		printf("\n\nCombien de jours le programme %d comprend : ", tab_prog[i]);
 		scanf_s("%d", &tab_jour[i]);
 	}
+}
+
+static double moyWeek(int nb_prog, int tab_jour[], int tab_prog[], double reliq_jour_prog[])
+{
+	int i = 0, j = 0;
+	double moyenne = 0;
+	double somme_moy_des_jours_par_prog = 0;
+
+	for (i = 0; i < nb_prog; i++) {
+		printf("\n\nProgramme No. %d : \n", tab_prog[i]);
+		reliq_jour_prog[i] = calc(); //reliq = Souche d'un jour du programme.
+	}
+
+	for (j = 0; j < nb_prog; j++) {
+		somme_moy_des_jours_par_prog = (reliq_jour_prog[j] * tab_jour[j]) + somme_moy_des_jours_par_prog;
+	}
+
+	moyenne = somme_moy_des_jours_par_prog / 7; // sommes de toutes les temprératures moyennes journaliers * nombres de jours du programmes / 7j de la semaines.
+
+	return moyenne;
 }
