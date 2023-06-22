@@ -77,10 +77,10 @@ static void initTabs(int tab_prog[], int tab_jour[], double reliq_jour_prog[], i
 
 static int numberOfProg()
 {
-	//Demande à l'utilisateur combien y'a t'il de programmes différents dans la semaines.
+	//Demande Ã  l'utilisateur combien y'a t'il de programmes diffÃ©rents dans la semaines.
 	int prog = 0;
 	printf("\n\n----------");
-	printf("\nLe nombre de programmes differents correspond aux nombre de parametrages similaire qui comprend un ou plusieurs jours.");
+	printf("\nLe nombre de programmes differents correspond aux nombres de parametrages (plages horraires) similaires qui comprend un ou plusieurs jours.");
 	printf("\nExemple : si un parametrage est effectuee du lundi au vendredi et un different est enregistre le week-end, alors il y a 2 programmes.");
 
 
@@ -156,7 +156,7 @@ static double moyWeek(int nb_prog, int tab_jour[], int tab_prog[], double reliq_
 		somme_moy_des_jours_par_prog = (reliq_jour_prog[j] * tab_jour[j]) + somme_moy_des_jours_par_prog;
 	}
 
-	moyenne = somme_moy_des_jours_par_prog / 7; // sommes de toutes les temprératures moyennes journaliers * nombres de jours du programmes / 7j de la semaines.
+	moyenne = somme_moy_des_jours_par_prog / 7; // sommes de toutes les temprÃ©ratures moyennes journaliers * nombres de jours du programmes / 7j de la semaines.
 
 	return moyenne;
 }
